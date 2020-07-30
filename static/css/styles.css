@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.givemespace {
+    margin: 10px auto;
+}
