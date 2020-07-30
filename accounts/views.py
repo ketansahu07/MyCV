@@ -27,4 +27,6 @@ def login_view(request):
     return render(request, 'accounts/login.html', {'form':form})
 
 def logout_view(request):
-    return HttpResponse("loged out!!")
+    if request.method == 'POST':
+        logout(request)
+        return redirect('main:home')
