@@ -18,7 +18,8 @@
           <a href="#" class="brand-logo">MyCV</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             {% if user.is_authenticated %}
-              <li><a href="#"><form action="{% url 'main:create_cv' %}" method="post">{% csrf_token %}<button class="btn-small" type="submit">Create CV</button></form></a></li>
+              <li><a href="#"><form action="{% url 'main:create_cv' %}" method="get">{% csrf_token %}<button class="btn-small" type="submit">Create CV</button></form></a></li>
+              <li><a href="{% url 'main:profile' %}">My profile</a></li>
               <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
             {% else %}
               <li><a href="{% url 'accounts:login' %}">Login</a></li>

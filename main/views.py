@@ -4,18 +4,23 @@ from django.shortcuts import render
 from .models import Contact, Education, Experience, Skill
 from . import forms
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 def home(request):
     return render(request, 'main/home.html')
 
 def profile(request):
-    con = Contact.objects.all()
-    edu = Education.objects.all()
-    exp = Experience.objects.all()
-    skill = Skill.objects.all()
-    return render(request,
-                  'main/profile.html',
-                  {'con':con, 'edu':edu, 'exp':exp, 'skill':skill})
+    try:
+        con = Contact.objects.get(user=request.user)
+        edu = Education.objects.filter(user=request.user)
+        exp = Experience.objects.filter(user=request.user)
+        skill = Skill.objects.filter(user=request.user)
+            
+        return render(request,
+                    'main/profile.html',
+                    {'con':con, 'edu':edu, 'exp':exp, 'skill':skill})
+    except ObjectDoesNotExist:
+        return redirect('main:create_cv')
 
 @login_required(login_url="/accounts/login/")
 def create_cv(request):
