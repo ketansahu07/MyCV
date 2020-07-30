@@ -1,0 +1,15 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <h2>Fill Details</h2>
+    <form class="site-form" action="{% url 'main:create_cv' %}" method="post">
+        {% csrf_token %}
+        {{ Cform.as_p }}
+        {{ Edform.as_p }}
+        {{ Exform.as_p }}
+        {{ Sform.as_p }}
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+{% endblock %}

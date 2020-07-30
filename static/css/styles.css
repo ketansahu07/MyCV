@@ -3,6 +3,11 @@
     margin: 0;
 }
 
-.givemespace {
-    margin: 10px auto;
-}
+.isDisabled {
+    color: currentColor;
+    display: inline-block;  /* For IE11/ MS Edge bug */
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+
